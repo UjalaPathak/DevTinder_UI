@@ -27,7 +27,11 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  return <div className="flex justify-center my-10"></div>;
+  return (
+    <div className="flex justify-center my-10">
+      <UserCards />
+    </div>
+  );
 };
 
 export default Feed;

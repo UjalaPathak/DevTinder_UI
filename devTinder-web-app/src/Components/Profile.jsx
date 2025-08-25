@@ -1,11 +1,18 @@
 import React from "react";
-import NavBar from "./NavBar";
 import EditProfile from "./EditProfile";
+import UserCards from "./UserCards";
+import { useSelector } from "react-redux";
 
 export const Profile = () => {
-  return (
+  const userData = useSelector((store) => store.user);
+  console.log("userData", userData);
+  return userData&& (
     <>
-      <EditProfile />
+      {
+        <div className="flex flex-row items-center justify-center">
+          <EditProfile user={userData} />
+        </div>
+      }
     </>
   );
 };

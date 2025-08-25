@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import NavBar from "../Components/NavBar";
+import NavBar from "./NavBar/NavBar";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../Components/Footer";
 import axios from "axios";
