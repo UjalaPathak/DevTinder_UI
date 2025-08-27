@@ -18,6 +18,7 @@ const EditProfile = ({ user }) => {
   const dispatch = useDispatch();
 
   const [error, setError] = useState("");
+  const [showToast, setToast] = useState(false);
 
   const isFieldChange = (
     form,
@@ -58,22 +59,36 @@ const EditProfile = ({ user }) => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const previousData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      gender: user.gender,
+      age: user.age,
+      photoUrl: user.photoUrl,
+      description: user.description,
+    };
+
+    const changeField = {};
+
+    //forEach only works with array so object.keys(form) ({}->[])
+    //this to filter out and send only updated fields
+    Object.keys(form).forEach((element) => {
+      if (form[element] != previousData[element]) {
+        changeField[element] = form[element];
+      }
+    });
+
     try {
-      const value = await axios.patch(
-        BASE_URL + "/profile/edit",
-        {
-          firstName: form.firstName,
-          lastName: form.lastName,
-          gender: form.gender,
-          age: form.age,
-          photoUrl: form.photoUrl,
-          description: form.description,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      const value = await axios.patch(BASE_URL + "/profile/edit", changeField, {
+        withCredentials: true,
+      });
       dispatch(updateProfile(value.data));
+      setToast(true);
+      setTimeout(() => {
+        setToast(false);
+      }, 3000);
     } catch (err) {
       setError(err.response.data);
     }
@@ -167,6 +182,13 @@ const EditProfile = ({ user }) => {
           description: form.description,
         }}
       />
+      {showToast && (
+        <div className="toast toast-end toast-top">
+          <div className="alert alert-success">
+            <span>Profile Update Successfully</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

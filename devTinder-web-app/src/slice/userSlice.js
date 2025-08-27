@@ -11,7 +11,6 @@ const userSlice = createSlice({
       return null;
     },
     updateProfile: (state, action) => {
-      console.log("action.payload", action.payload);
       return action.payload;
     },
   },

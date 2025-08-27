@@ -5,14 +5,15 @@ import { useSelector } from "react-redux";
 
 export const Profile = () => {
   const userData = useSelector((store) => store.user);
-  console.log("userData", userData);
-  return userData&& (
-    <>
-      {
-        <div className="flex flex-row items-center justify-center">
-          <EditProfile user={userData} />
-        </div>
-      }
-    </>
+  return (
+    userData && (
+      <>
+        {
+          <div className="flex flex-row items-center justify-center">
+            <EditProfile user={userData} />
+          </div>
+        }
+      </>
+    )
   );
 };
