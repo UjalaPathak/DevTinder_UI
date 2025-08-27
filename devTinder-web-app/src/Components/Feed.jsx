@@ -19,6 +19,7 @@ const Feed = () => {
       });
       dispatch(addFeedData(res?.data[0]));
     } catch (err) {
+      console.log(err);
       //TODO: handle error
     }
   };
@@ -29,7 +30,7 @@ const Feed = () => {
 
   return (
     <div className="flex justify-center my-10">
-      <UserCards />
+      <UserCards feedData={feedData} />
     </div>
   );
 };

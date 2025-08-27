@@ -11,15 +11,12 @@ export const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
-  console.log("UserData", userData);
 
   const fetchUser = async () => {
     if (userData) {
-      console.log("insideif");
       return;
     }
     try {
-      console.log("inside try");
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
@@ -33,7 +30,6 @@ export const Body = () => {
     }
   };
   useEffect(() => {
-    console.log("inside useEffect");
     fetchUser();
   }, []);
   return (

@@ -24,7 +24,9 @@ const NavBar = () => {
   return (
     <div className="navbar bg-base-200 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">👩🏻‍💻DevTinder</a>
+        <a className="btn btn-ghost text-xl" onClick={() => navigate("/")}>
+          👩🏻‍💻DevTinder
+        </a>
       </div>
       <div className="flex gap-2">
         {User && (
@@ -44,8 +46,14 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-20 my-5  w-52 p-2 shadow"
             >
+              <li>
+                <Link to="/connection">Connections</Link>
+              </li>
+              <li>
+                <Link to="/request">Request</Link>
+              </li>
               <li>
                 <Link onClick={handleProfile} className="justify-between">
                   Profile
