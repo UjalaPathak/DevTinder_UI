@@ -23,7 +23,7 @@ function Connection() {
   return (
     <div className=" text-center my-10">
       <h1 className="text-bold text-2xl">Connections</h1>
-      {connections.data.map((connection) => {
+      {connections?.data?.map((connection) => {
         const { firstName, lastName, photoUrl } = connection;
         return (
           <div className="flex flex-row my-4 gap-5 border rounded-lg">
