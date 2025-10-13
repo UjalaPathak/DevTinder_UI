@@ -6,14 +6,26 @@ import { updateProfile } from "../slice/userSlice";
 import axios from "axios";
 
 const EditProfile = ({ user }) => {
+  const calculateAge = (dob) => {
+    if (!dob) return "";
+    const today = new Date();
+    const birthDate = new Date(dob);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+
   const { firstName, lastName, age, gender, photoUrl, description } = user;
   const [form, setForm] = useState({
-    firstName: firstName,
-    lastName: lastName,
-    age: age,
-    gender: gender,
-    photoUrl: photoUrl,
-    description: description,
+    firstName,
+    lastName,
+    age: user.age || "",
+    gender,
+    photoUrl,
+    description,
   });
   const dispatch = useDispatch();
 
@@ -133,7 +145,7 @@ const EditProfile = ({ user }) => {
 
           <label>Age:</label>
           <input
-            type="number"
+            type="date"
             name="age"
             placeholder="Enter your age"
             className="input input-bordered w-full max-w-xs flex-shrink-0"

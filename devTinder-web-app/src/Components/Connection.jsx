@@ -20,6 +20,8 @@ function Connection() {
   useEffect(() => {
     fetchConnection();
   }, []);
+
+  if (!connections) return <h1>No Connection Found</h1>;
   return (
     <div className=" text-center my-10">
       <h1 className="text-bold text-2xl">Connections</h1>

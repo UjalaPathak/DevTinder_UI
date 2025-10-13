@@ -43,3 +43,4 @@ then slice to appStore
 Login and check if data is coming in the store 
 Navbar should update as soon as User logs in 
 Build Logout 
+lucide-react(for icons pf eye)

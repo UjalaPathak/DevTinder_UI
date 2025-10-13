@@ -2,10 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const UserCards = ({ user }) => {
+  console.log("are we here");
   console.log("user", user);
   //const user = useSelector((store) => store.user);
   const { firstName, lastName, photoUrl, description, age, gender } = user;
-
 
   return (
     user && (
