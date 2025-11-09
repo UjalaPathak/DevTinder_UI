@@ -7,7 +7,6 @@ import Card from "./UI/Card";
 
 const Feed = () => {
   const feedData = useSelector((store) => store.feed);
-  console.log("feeddata", feedData);
   const dispatch = useDispatch();
 
   const getFeed = async () => {
@@ -25,7 +24,16 @@ const Feed = () => {
 
   useEffect(() => {
     getFeed();
-  }, [feedData]);
+  }, []);
+
+  if (!feedData) return;
+  if (feedData.length <= 0) {
+    return (
+      <h1 className="text-center font-serif font-bold mt-4 ">
+        No User Found ! Please come back later
+      </h1>
+    );
+  }
 
   // it stacks the card one after the other
   return (
