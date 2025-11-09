@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { BASE_URL } from "../constant";
-import UserCards from "./UserCards";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeedData } from "../slice/feedSlice";
@@ -11,16 +10,13 @@ const Feed = () => {
   console.log("feeddata", feedData);
   const dispatch = useDispatch();
 
-  console.log("feedData", feedData);
-
   const getFeed = async () => {
     if (feedData) return;
     try {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
-      console.log("res", res);
-      dispatch(addFeedData(res));
+      dispatch(addFeedData(res.data));
     } catch (err) {
       console.log(err);
       //TODO: handle error
@@ -28,15 +24,23 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    console.log("insideuseeffcet");
     getFeed();
   }, [feedData]);
 
+  // it stacks the card one after the other
   return (
-    <div className="flex justify-center my-10 gap-3">
-      {feedData?.data.map((value, index) => (
-        // <Card key={value._id} user={value} index={index} />
-        console.log("value")
+    <div className="relative flex justify-center items-center h-[500px]">
+      {feedData?.map((user, index) => (
+        <div
+          key={user._id}
+          className="absolute transition-transform duration-300"
+          style={{
+            transform: `translateY(${index * 5}px) scale(${1 - index * 0.02})`,
+            zIndex: feedData.length - index,
+          }}
+        >
+          <Card user={user} />
+        </div>
       ))}
     </div>
   );

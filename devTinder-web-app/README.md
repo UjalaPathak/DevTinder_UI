@@ -44,3 +44,18 @@ Login and check if data is coming in the store
 Navbar should update as soon as User logs in 
 Build Logout 
 lucide-react(for icons pf eye)
+
+
+CCS :
+css added in feed for card :
+The parent div is position: relative.
+
+Each card wrapper inside is position: absolute (via class absolute).
+
+This means every card is positioned on top of the parent container, stacked in the same area, instead of flowing next to each other.
+
+translateY(${index * 5}px): the second card is moved down 5px, third 10px etc. This creates a peek-behind effect.
+
+scale(${1 - index * 0.02}): each subsequent card is slightly smaller, so further cards look like they are behind the top one.
+
+zIndex: totalCards - index: ensures the card at index 0 is on top visually, others behind.
