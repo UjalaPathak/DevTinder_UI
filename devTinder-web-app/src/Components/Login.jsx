@@ -94,6 +94,11 @@ export const Login = () => {
                   Login
                 </button>
               </div>
+
+              <p className="text-center ">
+                Don't have an account ?{" "}
+                <a onClick={() => navigate("/signup")}>Signup</a>
+              </p>
             </div>
           </div>
         </div>
