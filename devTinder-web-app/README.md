@@ -195,8 +195,38 @@ After this it should work :
 http://YOUR_PUBLIC_IP
 
 - Modify the BASEURL in frontend project to "/api"
+- again commit 
+- git pull ( git bash , build , sudo scp)
 
+#Add custom domain name
+-Buy domain name from go daddy 
+-signup on cloudfare 
+- change the nameserver on godaddy and point it to cloudfare
+- wait till they are updated 
+- go to cloudfare -> DNS -> Record ( remove one of the A and in another -> content add the EC2 IP )
 
+if ( 502 or 404 error comes up - try to rebuild things and curl -I http://dev-match.in an see ots server is pointing to ngnix and not cloudfare)
+
+-Enable SSL
+https://dev-match.in/
+
+AFter this after Refresh if your page breaks 
+you need to  update the ngnix 
+ sudo nano /etc/nginx/sites-available/default
+ add this 
+
+ Your frontend is an SPA → routing happens in the browser, not on the server.
+
+But when you refresh:
+
+GET /dashboard → Nginx looks for /var/www/html/dashboard (doesn't exist)
+→ Error
+fix:
+  location / {
+             try_files $uri $uri/ /index.html;
+      }
+
+Amazon SES :
 
 
 
