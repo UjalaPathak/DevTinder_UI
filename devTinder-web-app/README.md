@@ -128,6 +128,12 @@ curl -I http://<your-public-ip>
 you should get :
 HTTP/1.1 200 OK
 
+Anytime you push anything build again :
+git pull 
+npm run build
+sudo scp -r dist/* /var/www/html/
+
+
 
 
 Deploy Backend:
@@ -164,7 +170,7 @@ http://13.60.79.179:7777/ - backend => http://13.60.79.179/api
  CTRL+K remove everything then paste server {
     listen 80 default_server;
     listen [::]:80 default_server;
-
+ 
     server_name  10.60.79.179;
 
     location / {
@@ -227,6 +233,12 @@ fix:
       }
 
 Amazon SES :
+go to IAM -> create user 
+publishIP fron DNS record paste that in cloudFare
+verify your domain name
+Verify an email address
+
+
 
 
 
